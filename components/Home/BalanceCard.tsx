@@ -1,17 +1,28 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { colors } from '@/constants/Styles';
+import { AnimatedNumber } from './AnimatedNumber';
 
 interface BalanceCardProps {
   balance: number;
   onCashOut: () => void;
+  refreshKey?: number;
 }
 
-export function BalanceCard({ balance, onCashOut }: BalanceCardProps) {
+export function BalanceCard({ balance, onCashOut, refreshKey }: BalanceCardProps) {
   return (
     <View style={styles.container}>
       <Text style={styles.label}>Balance</Text>
-      <Text style={styles.balance}>${balance.toFixed(2)}</Text>
+      <View style={styles.balanceContainer}>
+      <Text style={styles.balance}>$</Text>
+        <AnimatedNumber 
+          value={balance} 
+          formatter={(val) => val.toFixed(2)}
+          style={styles.balance}
+          refreshKey={refreshKey}
+        />
+        
+      </View>
       <TouchableOpacity 
         style={styles.button}
         onPress={onCashOut}
@@ -34,11 +45,14 @@ const styles = StyleSheet.create({
     color: colors.secondary,
     marginBottom: 4,
   },
+  balanceContainer: {
+    flexDirection: 'row',
+    marginBottom: 12,
+  },
   balance: {
     fontSize: 24,
     fontWeight: 'bold',
     color: colors.secondary,
-    marginBottom: 12,
   },
   button: {
     backgroundColor: colors.secondary,

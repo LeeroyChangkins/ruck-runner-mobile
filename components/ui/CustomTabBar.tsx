@@ -80,7 +80,7 @@ export function CustomTabBar({ state, descriptors, navigation }: CustomTabBarPro
               ]}>
                 {options.tabBarIcon({
                   focused: isFocused,
-                  color: isFocused ? colors.secondary : colors.text,
+                  color: colors.text, // White color for all icons
                   size: 28,
                 })}
               </View>
@@ -105,6 +105,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   activeTabItem: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.secondary,
   }
 }); 

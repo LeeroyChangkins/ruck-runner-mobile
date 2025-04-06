@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { View, Text, StyleSheet, Animated } from 'react-native';
 import { colors } from '@/constants/Styles';
 
 interface IncomeData {
@@ -10,10 +10,30 @@ interface IncomeData {
 interface IncomeChartProps {
   data: IncomeData[];
   title?: string;
+  refreshKey?: number;
 }
 
-export function IncomeChart({ data, title = 'Daily income' }: IncomeChartProps) {
+export function IncomeChart({ data, title = 'Daily income', refreshKey = 0 }: IncomeChartProps) {
   const maxValue = Math.max(...data.map(item => item.amount)) || 1;
+  // Create an animated value for each bar
+  const barAnimations = useRef(data.map(() => new Animated.Value(0))).current;
+
+  useEffect(() => {
+    // Animate all bars simultaneously
+    const animations = barAnimations.map((anim, index) => {
+      // Reset animation when component mounts or data changes
+      anim.setValue(0);
+      return Animated.timing(anim, {
+        toValue: 1,
+        duration: 1000,
+        useNativeDriver: false, // Height animations require JS driver
+        delay: 300, // Slight delay for better effect
+      });
+    });
+
+    // Run all animations together
+    Animated.parallel(animations).start();
+  }, [data, barAnimations, refreshKey]);
 
   return (
     <View style={styles.container}>
@@ -27,11 +47,14 @@ export function IncomeChart({ data, title = 'Daily income' }: IncomeChartProps) 
           return (
             <View key={index} style={styles.barWrapper}>
               <View style={styles.barContainer}>
-                <View 
+                <Animated.View 
                   style={[
                     styles.bar, 
                     { 
-                      height: `${barHeight}%`, 
+                      height: barAnimations[index].interpolate({
+                        inputRange: [0, 1],
+                        outputRange: ['0%', `${barHeight}%`],
+                      }), 
                       backgroundColor: barColor 
                     }
                   ]} 

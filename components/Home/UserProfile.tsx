@@ -1,15 +1,20 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { colors } from '@/constants/Styles';
 
 interface UserProfileProps {
   name: string;
   avatarUrl?: string;
+  onPress?: () => void;
 }
 
-export function UserProfile({ name, avatarUrl }: UserProfileProps) {
+export function UserProfile({ name, avatarUrl, onPress }: UserProfileProps) {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity 
+      style={styles.container} 
+      onPress={onPress}
+      activeOpacity={0.7}
+    >
       <View style={styles.avatarContainer}>
         {avatarUrl ? (
           <Image source={{ uri: avatarUrl }} style={styles.avatar} />
@@ -23,7 +28,7 @@ export function UserProfile({ name, avatarUrl }: UserProfileProps) {
         <Text style={styles.hello}>Hello</Text>
         <Text style={styles.name}>{name}!</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
@@ -45,7 +50,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 25,
-    backgroundColor: colors.primary,
+    backgroundColor: colors.secondary,
     justifyContent: 'center',
     alignItems: 'center',
   },

@@ -42,12 +42,12 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     alignItems: 'center',
-    paddingBottom: 10,
+    paddingBottom: 0,
   },
   tabBarWrapper: {
     width: TAB_BAR_WIDTH,
     alignItems: 'center',
-    marginBottom: 10,
+    // marginBottom: 10,
   },
   tabBar: {
     width: '100%',

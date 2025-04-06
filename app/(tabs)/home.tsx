@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, ScrollView, SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { colors } from '@/constants/Styles';
+import { router, useFocusEffect } from 'expo-router';
 
 import { UserProfile } from '@/components/Home/UserProfile';
 import { BalanceCard } from '@/components/Home/BalanceCard';
@@ -27,9 +28,28 @@ const mockVehicle = {
 };
 
 export default function Home() {
+  // Use a refresh key to force animations to restart
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  // Use useFocusEffect to detect when the screen comes into focus
+  useFocusEffect(
+    React.useCallback(() => {
+      // Increment the refresh key to trigger animations
+      setRefreshKey(prevKey => prevKey + 1);
+      
+      return () => {
+        // Clean up if needed
+      };
+    }, [])
+  );
+
   const handleCashOut = () => {
     // Handle cash out functionality
     console.log('Cash out pressed');
+  };
+
+  const navigateToProfile = () => {
+    router.navigate('/(tabs)/profile');
   };
 
   return (
@@ -41,19 +61,30 @@ export default function Home() {
         contentContainerStyle={styles.contentContainer}
         showsVerticalScrollIndicator={false}
       >
-        <UserProfile name="Ryan" />
+        <UserProfile 
+          name="Ryan" 
+          onPress={navigateToProfile}
+        />
         
-        <BalanceCard balance={1245} onCashOut={handleCashOut} />
+        <BalanceCard 
+          balance={1245} 
+          onCashOut={handleCashOut}
+          refreshKey={refreshKey}
+        />
         
         <View style={styles.statRow}>
           <StatCard
             title="Rating"
             value={4.8}
+            delay={300}
+            refreshKey={refreshKey}
           />
           
           <StatCard
             title="Drops this week:"
             value={26}
+            delay={500}
+            refreshKey={refreshKey}
           />
         </View>
         
@@ -63,9 +94,14 @@ export default function Home() {
           title="Total earnings this week:"
           value="$264.62"
           width="100%"
+          delay={700}
+          refreshKey={refreshKey}
         />
         
-        <IncomeChart data={mockIncomeData} />
+        <IncomeChart 
+          data={mockIncomeData} 
+          refreshKey={refreshKey}
+        />
       </ScrollView>
     </SafeAreaView>
   );
