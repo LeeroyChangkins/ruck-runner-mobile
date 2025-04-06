@@ -71,12 +71,8 @@ export default function VehicleInformation() {
 
   const handleNext = () => {
     if (validate()) {
-      if (hasTrailer) {
-        router.push('/trailer-information');
-      } else {
-        // In a real app, this would save the vehicle info and navigate to the main app
-        router.push('/');
-      }
+      // Navigate to vehicle photos screen
+      router.push('/vehicle-photos');
     }
   };
 

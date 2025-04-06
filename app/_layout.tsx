@@ -41,11 +41,13 @@ export default function RootLayout() {
         <Stack.Screen name="code-verification" />
         <Stack.Screen name="driver-identification" />
         <Stack.Screen name="vehicle-information" />
+        <Stack.Screen name="vehicle-photos" />
         <Stack.Screen name="trailer-information" />
+        <Stack.Screen name="trailer-photos" />
         <Stack.Screen name="(tabs)" />
         <Stack.Screen name="+not-found" />
       </Stack>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
     </ThemeProvider>
   );
 }

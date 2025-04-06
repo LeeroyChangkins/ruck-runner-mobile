@@ -33,7 +33,7 @@ export default function CodeVerification() {
 
   return (
     <View style={GlobalStyles.container}>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
       
       <Text style={GlobalStyles.title}>Enter Verification Code</Text>
       <Text style={GlobalStyles.subtitle}>Enter the 6-digit code sent to your phone</Text>

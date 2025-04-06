@@ -94,8 +94,8 @@ export default function TrailerInformation() {
 
   const handleComplete = () => {
     if (validate()) {
-      // In a real app, this would save the trailer information
-      router.push('/');
+      // Navigate to trailer photos screen
+      router.push('/trailer-photos');
     }
   };
 
@@ -109,7 +109,7 @@ export default function TrailerInformation() {
             gestureEnabled: false
           }} 
         />
-        <StatusBar style="auto" />
+        <StatusBar style="light" />
         
         <Text style={GlobalStyles.title}>Trailer Information</Text>
         <Text style={GlobalStyles.subtitle}>Tell us about your trailer</Text>

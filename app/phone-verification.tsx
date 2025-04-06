@@ -15,13 +15,21 @@ export default function PhoneVerification() {
       return false;
     }
     
-    if (!/^\d{10}$/.test(phone.replace(/\D/g, ''))) {
-      setError('Please enter a valid 10-digit phone number');
+    // Remove any non-digit characters and check length
+    const digitsOnly = phone.replace(/\D/g, '');
+    if (digitsOnly.length !== 10) {
+      setError('Please enter exactly 10 digits for your phone number');
       return false;
     }
     
     setError('');
     return true;
+  };
+
+  const handlePhoneChange = (text: string) => {
+    // Only allow digits, spaces, parentheses, and dashes
+    const formattedText = text.replace(/[^\d\s()\-]/g, '');
+    setPhone(formattedText);
   };
 
   const handleSendCode = () => {
@@ -33,7 +41,7 @@ export default function PhoneVerification() {
 
   return (
     <View style={GlobalStyles.container}>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
       
       <Text style={GlobalStyles.title}>Verify Your Phone</Text>
       <Text style={GlobalStyles.subtitle}>We'll send a verification code to your phone</Text>
@@ -44,8 +52,9 @@ export default function PhoneVerification() {
           style={[GlobalStyles.input, error && GlobalStyles.inputError]}
           placeholder="Enter your phone number"
           value={phone}
-          onChangeText={setPhone}
+          onChangeText={handlePhoneChange}
           keyboardType="phone-pad"
+          maxLength={14} // Allow for formatting characters
         />
         {error ? <Text style={GlobalStyles.errorText}>{error}</Text> : null}
       </View>

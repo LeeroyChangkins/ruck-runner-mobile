@@ -1,18 +1,18 @@
 import { StyleSheet } from 'react-native';
 
 export const colors = {
-  primary: '#007AFF',
+  primary: '#ffb400',
   secondary: '#5856D6',
   danger: '#FF3B30',
   success: '#34C759',
   warning: '#FF9500',
-  background: '#FFFFFF',
-  card: '#F2F2F7',
-  text: '#000000',
-  textSecondary: '#666666',
-  border: '#DDDDDD',
+  background: '#1a1a1a',
+  card: '#2a2a2a',
+  text: '#FFFFFF',
+  textSecondary: '#AAAAAA',
+  border: '#444444',
   borderError: '#FF3B30',
-  placeholder: '#999999',
+  placeholder: '#777777',
 };
 
 export const spacing = {
@@ -51,10 +51,10 @@ export const typography = {
 export const GlobalStyles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 30,
+    paddingTop: 50,
     paddingHorizontal: 20,
     paddingBottom: 20,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.background,
   },
   scrollContainer: {
     flexGrow: 1,
@@ -65,11 +65,12 @@ export const GlobalStyles = StyleSheet.create({
     marginTop: 20,
     fontSize: 24,
     fontWeight: 'bold',
+    color: colors.text,
   },
   subtitle: {
     marginBottom: 24,
     textAlign: 'center',
-    color: '#666666',
+    color: colors.textSecondary,
     fontSize: 16,
   },
   inputContainer: {
@@ -79,25 +80,28 @@ export const GlobalStyles = StyleSheet.create({
     marginBottom: 8,
     fontSize: 16,
     fontWeight: '500',
+    color: colors.text,
   },
   input: {
     height: 50,
     borderWidth: 1,
-    borderColor: '#CCCCCC',
+    borderColor: colors.border,
     borderRadius: 8,
     paddingHorizontal: 12,
     fontSize: 16,
+    backgroundColor: '#2a2a2a',
+    color: colors.text,
   },
   inputError: {
-    borderColor: '#FF3B30',
+    borderColor: colors.danger,
   },
   errorText: {
-    color: '#FF3B30',
+    color: colors.danger,
     marginTop: 4,
     fontSize: 14,
   },
   primaryButton: {
-    backgroundColor: '#007AFF',
+    backgroundColor: colors.primary,
     height: 50,
     borderRadius: 8,
     justifyContent: 'center',
@@ -105,7 +109,7 @@ export const GlobalStyles = StyleSheet.create({
     marginTop: 16,
   },
   buttonText: {
-    color: '#FFFFFF',
+    color: '#000000',
     fontSize: 16,
     fontWeight: '600',
   },
@@ -114,19 +118,20 @@ export const GlobalStyles = StyleSheet.create({
     alignSelf: 'center',
   },
   linkText: {
-    color: '#007AFF',
+    color: colors.primary,
     fontSize: 16,
   },
   photoContainer: {
     height: 150,
     borderWidth: 1,
-    borderColor: '#CCCCCC',
+    borderColor: colors.border,
     borderRadius: 8,
     borderStyle: 'dashed',
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 8,
     overflow: 'hidden',
+    backgroundColor: '#2a2a2a',
   },
   photoPreview: {
     width: '100%',
@@ -140,7 +145,7 @@ export const GlobalStyles = StyleSheet.create({
     alignItems: 'center',
   },
   photoUploadText: {
-    color: '#666666',
+    color: colors.textSecondary,
     fontSize: 16,
   },
 }); 

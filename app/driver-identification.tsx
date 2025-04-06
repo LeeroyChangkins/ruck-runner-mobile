@@ -45,7 +45,7 @@ export default function DriverIdentification() {
 
   return (
     <View style={GlobalStyles.container}>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
       
       <Text style={GlobalStyles.title}>Driver Identification</Text>
       <Text style={GlobalStyles.subtitle}>Please provide your driver documents</Text>
