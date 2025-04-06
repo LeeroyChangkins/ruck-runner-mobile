@@ -3,11 +3,11 @@ import { StatusBar } from 'expo-status-bar';
 
 import { GlobalStyles } from '@/constants/Styles';
 
-export default function HomeScreen() {
+export default function JobsScreen() {
   return (
     <View style={[GlobalStyles.container, styles.container]}>
       <StatusBar style="auto" />
-      <Text style={styles.title}>Home</Text>
+      <Text style={styles.title}>Jobs</Text>
     </View>
   );
 }
@@ -21,4 +21,4 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
   },
-});
+}); 

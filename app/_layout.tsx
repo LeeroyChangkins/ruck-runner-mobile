@@ -29,8 +29,20 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack 
+        initialRouteName="sign-in"
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="sign-in" />
+        <Stack.Screen name="sign-up" />
+        <Stack.Screen name="phone-verification" />
+        <Stack.Screen name="code-verification" />
+        <Stack.Screen name="driver-identification" />
+        <Stack.Screen name="vehicle-information" />
+        <Stack.Screen name="trailer-information" />
+        <Stack.Screen name="(tabs)" />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />
