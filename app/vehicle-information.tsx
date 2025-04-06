@@ -78,7 +78,7 @@ export default function VehicleInformation() {
 
   return (
     <View style={GlobalStyles.container}>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
       
       <ScrollView style={GlobalStyles.scrollContainer} contentContainerStyle={{ paddingBottom: 20 }}>
         <Text style={GlobalStyles.title}>Vehicle Information</Text>
@@ -90,7 +90,7 @@ export default function VehicleInformation() {
             style={[GlobalStyles.input, errors.make && GlobalStyles.inputError, { justifyContent: 'center' }]}
             onPress={() => setShowMakeModal(true)}
           >
-            <Text style={{ color: vehicleMake ? '#000000' : '#999999' }}>
+            <Text style={{ color: vehicleMake ? colors.text : colors.placeholder }}>
               {getSelectedMakeLabel()}
             </Text>
           </TouchableOpacity>
@@ -106,16 +106,16 @@ export default function VehicleInformation() {
             flex: 1, 
             justifyContent: 'center', 
             alignItems: 'center',
-            backgroundColor: 'rgba(0,0,0,0.5)' 
+            backgroundColor: 'rgba(0,0,0,0.7)' 
           }}>
             <View style={{ 
-              backgroundColor: 'white',
+              backgroundColor: colors.card,
               borderRadius: 10,
               padding: 20,
               width: '90%',
               maxHeight: '80%'
             }}>
-              <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 15, textAlign: 'center' }}>
+              <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 15, textAlign: 'center', color: colors.text }}>
                 Select Vehicle Make
               </Text>
               
@@ -127,7 +127,7 @@ export default function VehicleInformation() {
                     style={{
                       padding: 15,
                       borderBottomWidth: 1,
-                      borderBottomColor: '#EEEEEE'
+                      borderBottomColor: colors.border
                     }}
                     onPress={() => {
                       setVehicleMake(item);
@@ -136,7 +136,7 @@ export default function VehicleInformation() {
                   >
                     <Text style={{ 
                       fontSize: 16,
-                      color: item === vehicleMake ? '#007AFF' : '#000000'
+                      color: item === vehicleMake ? colors.primary : colors.text
                     }}>
                       {item}
                     </Text>
@@ -148,13 +148,13 @@ export default function VehicleInformation() {
                 style={{
                   marginTop: 15,
                   padding: 15,
-                  backgroundColor: '#EEEEEE',
+                  backgroundColor: colors.background,
                   borderRadius: 8,
                   alignItems: 'center'
                 }}
                 onPress={() => setShowMakeModal(false)}
               >
-                <Text style={{ fontSize: 16 }}>Cancel</Text>
+                <Text style={{ fontSize: 16, color: colors.text }}>Cancel</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -165,6 +165,7 @@ export default function VehicleInformation() {
           <TextInput
             style={[GlobalStyles.input, errors.model && GlobalStyles.inputError]}
             placeholder="Enter vehicle model"
+            placeholderTextColor={colors.placeholder}
             value={vehicleModel}
             onChangeText={setVehicleModel}
           />
@@ -176,6 +177,7 @@ export default function VehicleInformation() {
           <TextInput
             style={[GlobalStyles.input, errors.year && GlobalStyles.inputError]}
             placeholder="Enter vehicle year (YYYY)"
+            placeholderTextColor={colors.placeholder}
             value={vehicleYear}
             onChangeText={setVehicleYear}
             keyboardType="number-pad"
@@ -189,6 +191,7 @@ export default function VehicleInformation() {
           <TextInput
             style={[GlobalStyles.input, errors.licensePlate && GlobalStyles.inputError]}
             placeholder="Enter license plate number"
+            placeholderTextColor={colors.placeholder}
             value={licensePlate}
             onChangeText={setLicensePlate}
             autoCapitalize="characters"
@@ -201,6 +204,8 @@ export default function VehicleInformation() {
           <Switch
             value={hasTrailer}
             onValueChange={setHasTrailer}
+            trackColor={{ false: colors.border, true: colors.primary }}
+            thumbColor={hasTrailer ? '#ffffff' : '#f4f3f4'}
           />
         </View>
       </ScrollView>

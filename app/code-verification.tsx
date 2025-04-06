@@ -4,6 +4,7 @@ import { Stack, router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
 import { GlobalStyles } from '@/constants/Styles';
+import { colors } from '@/constants/Styles';
 
 export default function CodeVerification() {
   const [code, setCode] = useState('');
@@ -43,6 +44,7 @@ export default function CodeVerification() {
         <TextInput
           style={[GlobalStyles.input, error && GlobalStyles.inputError]}
           placeholder="Enter 6-digit code"
+          placeholderTextColor={colors.placeholder}
           value={code}
           onChangeText={setCode}
           keyboardType="number-pad"

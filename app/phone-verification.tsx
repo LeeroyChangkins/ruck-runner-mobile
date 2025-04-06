@@ -4,6 +4,7 @@ import { Stack, router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
 import { GlobalStyles } from '@/constants/Styles';
+import { colors } from '@/constants/Styles';
 
 export default function PhoneVerification() {
   const [phone, setPhone] = useState('');
@@ -51,6 +52,7 @@ export default function PhoneVerification() {
         <TextInput
           style={[GlobalStyles.input, error && GlobalStyles.inputError]}
           placeholder="Enter your phone number"
+          placeholderTextColor={colors.placeholder}
           value={phone}
           onChangeText={handlePhoneChange}
           keyboardType="phone-pad"

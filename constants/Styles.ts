@@ -12,7 +12,7 @@ export const colors = {
   textSecondary: '#AAAAAA',
   border: '#444444',
   borderError: '#FF3B30',
-  placeholder: '#777777',
+  placeholder: '#555555',
 };
 
 export const spacing = {
@@ -75,6 +75,7 @@ export const GlobalStyles = StyleSheet.create({
   },
   inputContainer: {
     marginBottom: 16,
+    marginTop: 10,
   },
   label: {
     marginBottom: 8,
@@ -84,8 +85,6 @@ export const GlobalStyles = StyleSheet.create({
   },
   input: {
     height: 50,
-    borderWidth: 1,
-    borderColor: colors.border,
     borderRadius: 8,
     paddingHorizontal: 12,
     fontSize: 16,
@@ -93,12 +92,14 @@ export const GlobalStyles = StyleSheet.create({
     color: colors.text,
   },
   inputError: {
+    borderWidth: 1,
     borderColor: colors.danger,
   },
   errorText: {
     color: colors.danger,
     marginTop: 4,
     fontSize: 14,
+    textAlign: 'center',
   },
   primaryButton: {
     backgroundColor: colors.primary,
@@ -112,6 +113,7 @@ export const GlobalStyles = StyleSheet.create({
     color: '#000000',
     fontSize: 16,
     fontWeight: '600',
+    textAlign: 'center',
   },
   link: {
     marginTop: 16,
@@ -120,6 +122,7 @@ export const GlobalStyles = StyleSheet.create({
   linkText: {
     color: colors.primary,
     fontSize: 16,
+    textAlign: 'center',
   },
   photoContainer: {
     height: 150,
@@ -147,5 +150,6 @@ export const GlobalStyles = StyleSheet.create({
   photoUploadText: {
     color: colors.textSecondary,
     fontSize: 16,
+    textAlign: 'center',
   },
 }); 

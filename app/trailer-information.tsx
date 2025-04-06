@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Text, View, TextInput, TouchableOpacity, StyleSheet, ScrollView, Modal, FlatList } from 'react-native';
-import { Stack, router } from 'expo-router';
+import { Text, View, TextInput, TouchableOpacity, ScrollView, Modal, FlatList } from 'react-native';
+import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
 import { GlobalStyles } from '@/constants/Styles';
@@ -100,17 +100,10 @@ export default function TrailerInformation() {
   };
 
   return (
-    <ScrollView contentContainerStyle={GlobalStyles.scrollContainer}>
-      <View style={GlobalStyles.container}>
-        <Stack.Screen 
-          options={{ 
-            title: 'Trailer Information',
-            headerBackVisible: false,
-            gestureEnabled: false
-          }} 
-        />
-        <StatusBar style="light" />
-        
+    <View style={GlobalStyles.container}>
+      <StatusBar style="light" />
+      
+      <ScrollView style={GlobalStyles.scrollContainer} contentContainerStyle={{ paddingBottom: 20 }}>
         <Text style={GlobalStyles.title}>Trailer Information</Text>
         <Text style={GlobalStyles.subtitle}>Tell us about your trailer</Text>
         
@@ -120,11 +113,11 @@ export default function TrailerInformation() {
             style={[GlobalStyles.input, errors.trailerType && GlobalStyles.inputError, { justifyContent: 'center' }]}
             onPress={() => setShowTypeModal(true)}
           >
-            <Text style={{ color: trailerType ? '#000000' : '#999999' }}>
+            <Text style={{ color: trailerType ? colors.text : colors.placeholder }}>
               {getSelectedTrailerTypeLabel()}
             </Text>
           </TouchableOpacity>
-          {errors.trailerType && <Text style={GlobalStyles.errorText}>{errors.trailerType}</Text>}
+          {errors.trailerType ? <Text style={GlobalStyles.errorText}>{errors.trailerType}</Text> : null}
         </View>
 
         <Modal
@@ -136,16 +129,16 @@ export default function TrailerInformation() {
             flex: 1, 
             justifyContent: 'center', 
             alignItems: 'center',
-            backgroundColor: 'rgba(0,0,0,0.5)' 
+            backgroundColor: 'rgba(0,0,0,0.7)' 
           }}>
             <View style={{ 
-              backgroundColor: 'white',
+              backgroundColor: colors.card,
               borderRadius: 10,
               padding: 20,
               width: '90%',
               maxHeight: '80%'
             }}>
-              <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 15, textAlign: 'center' }}>
+              <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 15, textAlign: 'center', color: colors.text }}>
                 Select Trailer Type
               </Text>
               
@@ -157,7 +150,7 @@ export default function TrailerInformation() {
                     style={{
                       padding: 15,
                       borderBottomWidth: 1,
-                      borderBottomColor: '#EEEEEE'
+                      borderBottomColor: colors.border
                     }}
                     onPress={() => {
                       setTrailerType(item);
@@ -166,7 +159,7 @@ export default function TrailerInformation() {
                   >
                     <Text style={{ 
                       fontSize: 16,
-                      color: item === trailerType ? '#007AFF' : '#000000'
+                      color: item === trailerType ? colors.primary : colors.text
                     }}>
                       {item}
                     </Text>
@@ -178,13 +171,13 @@ export default function TrailerInformation() {
                 style={{
                   marginTop: 15,
                   padding: 15,
-                  backgroundColor: '#EEEEEE',
+                  backgroundColor: colors.background,
                   borderRadius: 8,
                   alignItems: 'center'
                 }}
                 onPress={() => setShowTypeModal(false)}
               >
-                <Text style={{ fontSize: 16 }}>Cancel</Text>
+                <Text style={{ fontSize: 16, color: colors.text }}>Cancel</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -196,11 +189,11 @@ export default function TrailerInformation() {
             style={[GlobalStyles.input, errors.trailerLength && GlobalStyles.inputError, { justifyContent: 'center' }]}
             onPress={() => setShowLengthModal(true)}
           >
-            <Text style={{ color: trailerLength ? '#000000' : '#999999' }}>
+            <Text style={{ color: trailerLength ? colors.text : colors.placeholder }}>
               {getSelectedLengthLabel()}
             </Text>
           </TouchableOpacity>
-          {errors.trailerLength && <Text style={GlobalStyles.errorText}>{errors.trailerLength}</Text>}
+          {errors.trailerLength ? <Text style={GlobalStyles.errorText}>{errors.trailerLength}</Text> : null}
         </View>
 
         <Modal
@@ -212,16 +205,16 @@ export default function TrailerInformation() {
             flex: 1, 
             justifyContent: 'center', 
             alignItems: 'center',
-            backgroundColor: 'rgba(0,0,0,0.5)' 
+            backgroundColor: 'rgba(0,0,0,0.7)' 
           }}>
             <View style={{ 
-              backgroundColor: 'white',
+              backgroundColor: colors.card,
               borderRadius: 10,
               padding: 20,
               width: '90%',
               maxHeight: '80%'
             }}>
-              <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 15, textAlign: 'center' }}>
+              <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 15, textAlign: 'center', color: colors.text }}>
                 Select Trailer Length
               </Text>
               
@@ -233,7 +226,7 @@ export default function TrailerInformation() {
                     style={{
                       padding: 15,
                       borderBottomWidth: 1,
-                      borderBottomColor: '#EEEEEE'
+                      borderBottomColor: colors.border
                     }}
                     onPress={() => {
                       setTrailerLength(item);
@@ -242,7 +235,7 @@ export default function TrailerInformation() {
                   >
                     <Text style={{ 
                       fontSize: 16,
-                      color: item === trailerLength ? '#007AFF' : '#000000'
+                      color: item === trailerLength ? colors.primary : colors.text
                     }}>
                       {item}
                     </Text>
@@ -254,13 +247,13 @@ export default function TrailerInformation() {
                 style={{
                   marginTop: 15,
                   padding: 15,
-                  backgroundColor: '#EEEEEE',
+                  backgroundColor: colors.background,
                   borderRadius: 8,
                   alignItems: 'center'
                 }}
                 onPress={() => setShowLengthModal(false)}
               >
-                <Text style={{ fontSize: 16 }}>Cancel</Text>
+                <Text style={{ fontSize: 16, color: colors.text }}>Cancel</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -272,11 +265,11 @@ export default function TrailerInformation() {
             style={[GlobalStyles.input, errors.numberOfAxles && GlobalStyles.inputError, { justifyContent: 'center' }]}
             onPress={() => setShowAxlesModal(true)}
           >
-            <Text style={{ color: numAxles ? '#000000' : '#999999' }}>
+            <Text style={{ color: numAxles ? colors.text : colors.placeholder }}>
               {getSelectedAxlesLabel()}
             </Text>
           </TouchableOpacity>
-          {errors.numberOfAxles && <Text style={GlobalStyles.errorText}>{errors.numberOfAxles}</Text>}
+          {errors.numberOfAxles ? <Text style={GlobalStyles.errorText}>{errors.numberOfAxles}</Text> : null}
         </View>
 
         <Modal
@@ -288,16 +281,16 @@ export default function TrailerInformation() {
             flex: 1, 
             justifyContent: 'center', 
             alignItems: 'center',
-            backgroundColor: 'rgba(0,0,0,0.5)' 
+            backgroundColor: 'rgba(0,0,0,0.7)' 
           }}>
             <View style={{ 
-              backgroundColor: 'white',
+              backgroundColor: colors.card,
               borderRadius: 10,
               padding: 20,
               width: '90%',
               maxHeight: '80%'
             }}>
-              <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 15, textAlign: 'center' }}>
+              <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 15, textAlign: 'center', color: colors.text }}>
                 Select Number of Axles
               </Text>
               
@@ -309,7 +302,7 @@ export default function TrailerInformation() {
                     style={{
                       padding: 15,
                       borderBottomWidth: 1,
-                      borderBottomColor: '#EEEEEE'
+                      borderBottomColor: colors.border
                     }}
                     onPress={() => {
                       setNumAxles(item);
@@ -318,7 +311,7 @@ export default function TrailerInformation() {
                   >
                     <Text style={{ 
                       fontSize: 16,
-                      color: item === numAxles ? '#007AFF' : '#000000'
+                      color: item === numAxles ? colors.primary : colors.text
                     }}>
                       {item}
                     </Text>
@@ -330,98 +323,35 @@ export default function TrailerInformation() {
                 style={{
                   marginTop: 15,
                   padding: 15,
-                  backgroundColor: '#EEEEEE',
+                  backgroundColor: colors.background,
                   borderRadius: 8,
                   alignItems: 'center'
                 }}
                 onPress={() => setShowAxlesModal(false)}
               >
-                <Text style={{ fontSize: 16 }}>Cancel</Text>
+                <Text style={{ fontSize: 16, color: colors.text }}>Cancel</Text>
               </TouchableOpacity>
             </View>
           </View>
         </Modal>
 
-        <Text style={GlobalStyles.label}>Trailer License Plate</Text>
-        <TextInput
-          style={[GlobalStyles.input, errors.licensePlate && GlobalStyles.inputError]}
-          placeholder="License Plate"
-          value={licensePlate}
-          onChangeText={setLicensePlate}
-          autoCapitalize="characters"
-        />
-        {errors.licensePlate && <Text style={GlobalStyles.errorText}>{errors.licensePlate}</Text>}
-      </View>
+        <View style={GlobalStyles.inputContainer}>
+          <Text style={GlobalStyles.label}>Trailer License Plate</Text>
+          <TextInput
+            style={[GlobalStyles.input, errors.licensePlate && GlobalStyles.inputError]}
+            placeholder="License Plate"
+            placeholderTextColor={colors.placeholder}
+            value={licensePlate}
+            onChangeText={setLicensePlate}
+            autoCapitalize="characters"
+          />
+          {errors.licensePlate ? <Text style={GlobalStyles.errorText}>{errors.licensePlate}</Text> : null}
+        </View>
+      </ScrollView>
 
       <TouchableOpacity style={GlobalStyles.primaryButton} onPress={handleComplete}>
         <Text style={GlobalStyles.buttonText}>Complete Registration</Text>
       </TouchableOpacity>
-    </ScrollView>
+    </View>
   );
-}
-
-const styles = StyleSheet.create({
-  dropdownButton: {
-    height: 50,
-    borderWidth: 1,
-    borderColor: '#ddd',
-    borderRadius: 8,
-    justifyContent: 'center',
-    paddingHorizontal: 15,
-    backgroundColor: '#fff',
-    marginBottom: 15,
-  },
-  dropdownPlaceholder: {
-    color: '#999',
-  },
-  dropdownSelectedText: {
-    color: '#000',
-  },
-  pickerError: {
-    borderColor: '#FF3B30',
-  },
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    backgroundColor: 'rgba(0,0,0,0.5)',
-  },
-  modalContent: {
-    backgroundColor: '#fff',
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
-    paddingHorizontal: 16,
-    paddingBottom: 30,
-    maxHeight: '70%',
-  },
-  modalTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    paddingVertical: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
-  },
-  optionItem: {
-    paddingVertical: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
-  },
-  optionText: {
-    fontSize: 16,
-  },
-  selectedOptionText: {
-    color: colors.primary,
-    fontWeight: 'bold',
-  },
-  closeButton: {
-    marginTop: 15,
-    paddingVertical: 12,
-    backgroundColor: '#eee',
-    borderRadius: 8,
-    alignItems: 'center',
-  },
-  closeButtonText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-}); 
+} 

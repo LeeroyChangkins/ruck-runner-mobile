@@ -11,6 +11,7 @@ import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
 import { GlobalStyles } from '@/constants/Styles';
+import { colors } from '@/constants/Styles';
 
 export default function VehiclePhotos() {
   const [exteriorFrontPhoto, setExteriorFrontPhoto] = useState<string | null>(null);
@@ -159,6 +160,7 @@ export default function VehiclePhotos() {
           <TextInput
             style={[GlobalStyles.input, errors.vinNumber && GlobalStyles.inputError]}
             placeholder="Enter 17-character VIN"
+            placeholderTextColor={colors.placeholder}
             value={vinNumber}
             onChangeText={handleVinChange}
             autoCapitalize="characters"
