@@ -99,7 +99,7 @@ export default function TrailerPhotos() {
   const handleComplete = () => {
     if (validate()) {
       // In a real app, this would save the trailer photos and navigate to the main app
-      router.push('/');
+      router.push('/home');
     }
   };
 

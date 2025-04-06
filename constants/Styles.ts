@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export const colors = {
   primary: '#ffb400',
-  secondary: '#5856D6',
+  secondary: '#121212',
   danger: '#FF3B30',
   success: '#34C759',
   warning: '#FF9500',
@@ -13,6 +13,10 @@ export const colors = {
   border: '#444444',
   borderError: '#FF3B30',
   placeholder: '#555555',
+  lightBackground: '#FFFFFF',
+  lightText: '#121212',
+  lightTextSecondary: '#555555',
+  lightBorder: '#DDDDDD',
 };
 
 export const spacing = {

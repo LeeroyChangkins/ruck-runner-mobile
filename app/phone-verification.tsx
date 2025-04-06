@@ -28,9 +28,13 @@ export default function PhoneVerification() {
   };
 
   const handlePhoneChange = (text: string) => {
-    // Only allow digits, spaces, parentheses, and dashes
-    const formattedText = text.replace(/[^\d\s()\-]/g, '');
-    setPhone(formattedText);
+    // Only allow digits, removing any non-digit characters
+    const digitsOnly = text.replace(/\D/g, '');
+    
+    // Limit to 10 digits
+    const limitedDigits = digitsOnly.slice(0, 10);
+    
+    setPhone(limitedDigits);
   };
 
   const handleSendCode = () => {
@@ -56,7 +60,7 @@ export default function PhoneVerification() {
           value={phone}
           onChangeText={handlePhoneChange}
           keyboardType="phone-pad"
-          maxLength={14} // Allow for formatting characters
+          maxLength={10} // Limit to 10 digits exactly
         />
         {error ? <Text style={GlobalStyles.errorText}>{error}</Text> : null}
       </View>
